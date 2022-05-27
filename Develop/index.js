@@ -92,7 +92,7 @@ const questions = () => {
         type: 'list',
         name: 'license',
         message: "what kind of license does your project have?",
-        choices: ['MIT', 'Apache 2.0','GPL v2', 'GPL v3', 'BSD 3-clause','Unlicense'],
+        choices: ['MIT', 'Apache 2.0','GPL v2', 'GPL v3', 'BSD 3-clause','Unlicense', 'No License'],
         default: ['MIT'],
         validate: usageInput => {
             if(usageInput){
@@ -137,7 +137,16 @@ const questions = () => {
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if(err) {
+           console.log(err);
+           return;
+        }else{
+            console.log("README created");
+        }
+    })
+};
 
 // TODO: Create a function to initialize app
 function init() {
